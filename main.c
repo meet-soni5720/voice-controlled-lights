@@ -14,7 +14,7 @@ d * Created: 2/2/2019 3:34:55 PM
 #define FOSC 8000000UL                                 // define baud
 #define ubrr 51
 int q,i,j;
-void uart_init (int baud)
+void uart_init (int baud)          // There are two Uart channels in atmega 128 we have used Uart 0 to use channel 1 just write 1 inplace of 0
 {   // to establish uart 0
 	UBRR0H = (unsigned char)(baud>>8);                      // shift the register right by 8 bits
 	UBRR0L =(unsigned char) baud;                           // set baud rate
@@ -83,7 +83,7 @@ int main()
 		_delay_ms(100);
 		USART_Transmit(data);
 		_delay_ms(100);
-		switch(data)
+		switch(data)                                        //working of leds according to the command recieved
 		{
 			case 'b':	//all on
 			setval1A(100);
